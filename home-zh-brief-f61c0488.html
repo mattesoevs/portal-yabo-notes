@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>爱游戏体育 · 知识库索引</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f9fc;
+            color: #2a3b4c;
+            line-height: 1.6;
+            padding: 24px 16px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 1120px;
+            width: 100%;
+        }
+
+        /* 目录感网格头部 */
+        .hero-toc {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #cbdbe8;
+        }
+
+        .hero-toc h1 {
+            font-size: clamp(1.8rem, 5vw, 2.8rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: #1d4d5c;
+            line-height: 1.2;
+            background: linear-gradient(135deg, #116466 0%, #2b7a78 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-toc .sub {
+            font-size: 0.95rem;
+            color: #4b6b7c;
+            background: #dfecf2;
+            padding: 4px 14px;
+            border-radius: 40px;
+            font-weight: 500;
+            white-space: nowrap;
+            margin-top: 6px;
+        }
+
+        /* 卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 22px;
+            margin: 28px 0 36px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 22px 20px 24px;
+            box-shadow: 0 8px 20px rgba(17, 100, 102, 0.06);
+            border: 1px solid #d9e6ed;
+            transition: transform 0.2s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 30px rgba(17, 100, 102, 0.12);
+            border-color: #a0c4d4;
+        }
+
+        .card .icon {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            display: block;
+            color: #2b7a78;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #1a3b44;
+            border-left: 4px solid #2b7a78;
+            padding-left: 12px;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #3a5563;
+            flex: 1;
+        }
+
+        .card .tag {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: #4d7a8a;
+            background: #e9f2f7;
+            padding: 2px 12px;
+            border-radius: 30px;
+            display: inline-block;
+            align-self: flex-start;
+        }
+
+        /* 说明区 + 提示区 双栏 */
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 28px;
+            margin: 20px 0 30px;
+        }
+
+        .info-block {
+            flex: 1 1 280px;
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 26px 24px;
+            box-shadow: 0 6px 14px rgba(0, 40, 50, 0.04);
+            border: 1px solid #d3e2ec;
+        }
+
+        .info-block h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1d5a5e;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-block h4::before {
+            content: "▍";
+            color: #2b7a78;
+            font-size: 1.5rem;
+        }
+
+        .info-block p {
+            color: #2c4a58;
+            font-size: 0.98rem;
+            margin-bottom: 10px;
+        }
+
+        .info-block .reminder {
+            background: #e2f0f5;
+            padding: 14px 18px;
+            border-radius: 18px;
+            margin-top: 16px;
+            color: #194d54;
+            border-left: 6px solid #2b7a78;
+            font-size: 0.93rem;
+        }
+
+        .info-block .faq-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #e0eef5;
+        }
+
+        .info-block .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #1d4d5c;
+            margin-bottom: 4px;
+            font-size: 0.95rem;
+        }
+
+        .faq-item span {
+            font-size: 0.9rem;
+            color: #395c6b;
+        }
+
+        /* 链接句子 */
+        .link-sentence {
+            background: #e0edf3;
+            padding: 16px 22px;
+            border-radius: 60px;
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #1b4953;
+            margin: 20px 0 12px;
+        }
+
+        .link-sentence a {
+            color: #116466;
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 2px solid #8db9c9;
+            transition: border-color 0.15s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom-color: #116466;
+        }
+
+        /* 相关信息区 */
+        .related {
+            margin-top: 30px;
+            padding: 20px 0 10px;
+            border-top: 1px solid #cddfea;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 22px;
+            justify-content: space-between;
+        }
+
+        .related span {
+            font-size: 0.9rem;
+            color: #2e5b68;
+            background: #ebf3f8;
+            padding: 4px 14px;
+            border-radius: 30px;
+            white-space: nowrap;
+        }
+
+        .related .highlight {
+            background: #c7dfe9;
+            font-weight: 500;
+            color: #15444e;
+        }
+
+        .footnote {
+            margin-top: 36px;
+            font-size: 0.8rem;
+            color: #5c7f8b;
+            text-align: center;
+            border-top: 1px dashed #b7d2de;
+            padding-top: 26px;
+        }
+
+        /* 移动端微调 */
+        @media (max-width: 640px) {
+            .hero-toc {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 6px;
+            }
+            .card-grid {
+                gap: 16px;
+            }
+            .info-block {
+                padding: 20px 16px;
+            }
+            .link-sentence {
+                padding: 14px 18px;
+                font-size: 0.95rem;
+                border-radius: 40px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+    <!-- 标题 + 目录感 -->
+    <div class="hero-toc">
+        <div>
+            <h1>爱游戏体育 · 知识库</h1>
+            <div class="sub">运动 · 赛事 · 资讯 · 文化</div>
+        </div>
+        <div style="font-size:0.85rem; color:#3b6c7a; background:#dcecf3; padding:6px 16px; border-radius:30px;">
+            ⚡ 今日索引更新
+        </div>
+    </div>
+
+    <!-- 网格卡片：知识库入口感 -->
+    <div class="card-grid">
+        <div class="card">
+            <span class="icon">🏀</span>
+            <h3>赛事数据库</h3>
+            <p>主流联赛、杯赛、积分榜与赛程结构，从五大联赛到本土赛事，持续收录历史与实时数据。</p>
+            <span class="tag">数据 · 赛程</span>
+        </div>
+        <div class="card">
+            <span class="icon">🎯</span>
+            <h3>运动项目百科</h3>
+            <p>足球、篮球、网球、电子竞技…… 各项目规则、战术演变、明星选手与经典瞬间，搭建体育知识图谱。</p>
+            <span class="tag">百科 · 文化</span>
+        </div>
+        <div class="card">
+            <span class="icon">📰</span>
+            <h3>资讯精选</h3>
+            <p>聚合体育新闻、深度报道、转会动态与赛事前瞻，帮助爱好者快速掌握圈内新鲜事。</p>
+            <span class="tag">新闻 · 动态</span>
+        </div>
+        <div class="card">
+            <span class="icon">🧩</span>
+            <h3>玩法与策略</h3>
+            <p>从观赛技巧到体育博彩常识，理性分析不同玩法的逻辑与风险，倡导健康参与。</p>
+            <span class="tag">策略 · 理性</span>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 双栏 -->
+    <div class="info-panel">
+        <div class="info-block">
+            <h4>说明区 · 内容定位</h4>
+            <p>本知识库围绕「爱游戏体育」这一主题，整合运动文化、赛事信息与爱好者社区讨论。所有内容均来源于公开资料与经验整理，旨在为体育迷提供一个结构化的参考入口，而非官方渠道。</p>
+            <p>内容覆盖足球、篮球、网球、格斗、电竞等多个领域，同时关注运动背后的地理、历史与商业故事。</p>
+            <div class="reminder">
+                💡 <strong>使用建议：</strong>通过上方卡片快速进入对应板块，也可利用站内搜索查找特定赛事或术语。
+            </div>
+        </div>
+        <div class="info-block">
+            <h4>提示区 · 常见疑问</h4>
+            <div class="faq-item">
+                <strong>❓ 内容多久更新一次？</strong>
+                <span>核心赛事数据每日同步，百科类条目每周迭代，新闻版块实时抓取摘要。</span>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 有交流社区吗？</strong>
+                <span>当前以知识库为主，后续计划开放话题板块，欢迎留意后续更新。</span>
+            </div>
+            <div class="faq-item">
+                <strong>❓ 链接跳转是否安全？</strong>
+                <span>所有外链均经过基础筛选，但建议自行甄别第三方平台内容。</span>
+            </div>
+            <div class="reminder" style="margin-top:18px;">
+                ⚠️ 提示：任何体育相关决策请保持理性，量力而行。
+            </div>
+        </div>
+    </div>
+
+    <!-- 自然嵌入链接的句子 -->
+    <div class="link-sentence">
+        🏅 如果你对运动赛事或文化感兴趣，可以随时通过 <a href="https://home-zh-ayx.com">爱游戏体育</a> 探索更多细节，这里收录了各类体育项目的基础与进阶内容。
+    </div>
+
+    <!-- 相关信息区 -->
+    <div class="related">
+        <span>🏆 相关主题：体育文化 · 赛事分析 · 运动技巧</span>
+        <span class="highlight">📌 最近更新：NBA 季后赛数据 & 欧洲杯预选赛</span>
+        <span>📚 推荐阅读：运动心理学入门 · 赛事经济学</span>
+        <span>🔗 友情板块：体育史话 · 装备评测</span>
+    </div>
+
+    <div class="footnote">
+        © 知识库 · 基于公开信息整理 · 仅供学习与参考
+    </div>
+</div>
+</body>
+</html>
