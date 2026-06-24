@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 一处安静的游戏角落</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f7f3ee;
+            font-family: 'Segoe UI', 'PingFang SC', Roboto, system-ui, -apple-system, sans-serif;
+            color: #2d2a26;
+            line-height: 1.7;
+            padding: 0 20px;
+        }
+
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 0 80px;
+        }
+
+        /* 主视觉区（hero） */
+        .hero {
+            margin-bottom: 52px;
+        }
+
+        .hero-title {
+            font-size: 2.6rem;
+            font-weight: 350;
+            letter-spacing: 1px;
+            color: #3a3530;
+            margin-bottom: 10px;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            background: #e8e0d8;
+            padding: 0 0.2em;
+        }
+
+        .hero-sub {
+            font-size: 1rem;
+            color: #8f867d;
+            border-left: 3px solid #d4c9be;
+            padding-left: 18px;
+            margin-top: 8px;
+        }
+
+        /* 引用/提示框 */
+        .notice-box {
+            background: #efeae3;
+            padding: 24px 28px;
+            border-radius: 6px;
+            margin: 32px 0 44px;
+            font-size: 1rem;
+            border-left: 6px solid #b8aa9c;
+        }
+
+        .notice-box p {
+            margin-bottom: 6px;
+        }
+
+        .notice-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .notice-box .highlight {
+            font-weight: 500;
+            color: #3a3028;
+        }
+
+        /* 卡片区域 */
+        .cards-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin: 44px 0 48px;
+        }
+
+        .card {
+            flex: 1 1 240px;
+            min-width: 200px;
+            background: #ffffff;
+            border-radius: 10px;
+            padding: 28px 24px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02), 0 4px 12px rgba(90,70,50,0.04);
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 14px rgba(80,60,40,0.06);
+        }
+
+        .card-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-weight: 500;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+            color: #3d352e;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #5f554c;
+        }
+
+        .card p + p {
+            margin-top: 10px;
+        }
+
+        /* 自然链接段落 + 更多叙述 */
+        .essay {
+            margin: 40px 0 30px;
+        }
+
+        .essay p {
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .essay p:last-child {
+            margin-bottom: 0;
+        }
+
+        .inset-quote {
+            background: #f2ece6;
+            padding: 18px 24px;
+            border-radius: 6px;
+            margin: 28px 0 32px;
+            font-style: normal;
+            color: #4f453d;
+            border: 1px solid #e2d7ce;
+        }
+
+        .inset-quote strong {
+            font-weight: 600;
+            color: #3b322b;
+        }
+
+        .faq-mini {
+            margin-top: 44px;
+            border-top: 1px solid #ddd5cc;
+            padding-top: 32px;
+        }
+
+        .faq-mini h4 {
+            font-weight: 500;
+            font-size: 1.15rem;
+            margin-bottom: 18px;
+            color: #3b342e;
+        }
+
+        .faq-item {
+            margin-bottom: 18px;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #4d423a;
+        }
+
+        .faq-item .a {
+            margin-top: 2px;
+            color: #5f554b;
+        }
+
+        .faq-item .a a {
+            color: #63584d;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #cbbfb4;
+        }
+
+        .faq-item .a a:hover {
+            color: #2f2822;
+            text-decoration-color: #63584d;
+        }
+
+        a {
+            color: #4f443b;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: #d0c3b6;
+            transition: color 0.2s, text-decoration-color 0.2s;
+        }
+
+        a:hover {
+            color: #2b241e;
+            text-decoration-color: #4f443b;
+        }
+
+        .footer-note {
+            margin-top: 64px;
+            font-size: 0.9rem;
+            color: #ab9f94;
+            text-align: left;
+            border-top: 1px solid #e2d8cf;
+            padding-top: 24px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .page {
+                padding: 40px 0 60px;
+            }
+            .hero-title {
+                font-size: 2rem;
+            }
+            .card {
+                flex: 1 1 100%;
+            }
+            .notice-box {
+                padding: 18px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 主视觉 -->
+    <div class="hero">
+        <h1 class="hero-title">再次回到 <em>爱游戏</em></h1>
+        <div class="hero-sub">一个不急着追赶潮流的地方 · 安静，缓慢，常有回响</div>
+    </div>
+
+    <!-- 提示框 / 收藏与回归 -->
+    <div class="notice-box">
+        <p><span class="highlight">◈ 收藏即重逢</span> — 如果你曾到过这里，也许还记得那种没有推送通知的浏览节奏。把 <a href="https://cnmain-igame.com">爱游戏</a> 放进书签夹，不必每天回来，但每次打开都像推开一扇熟悉的门。</p>
+        <p>我们更希望你是「再次想起」而来，而不是「被提醒」而来。</p>
+    </div>
+
+    <!-- 信息卡片区：用途 + 人群  -->
+    <div class="cards-grid">
+        <div class="card">
+            <div class="card-icon">📋</div>
+            <h3>用途 · 翻看与索引</h3>
+            <p>这里适合那些想安静地读一点游戏相关记录的人。没有排行榜，没有浮动弹窗，只有文章、短评和整理过的列表。</p>
+            <p>你可以把它当作一份私人化的游戏笔记本——只是恰好公开了。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">👤</div>
+            <h3>适合 · 持续关注的玩家</h3>
+            <p>已经玩了几年游戏的人，或者刚刚开始但不想被算法推着走的人。<br>
+            页面更新的节奏不算快，但每一条都经过筛选和重读。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">🔄</div>
+            <h3>方式 · 慢慢回来就好</h3>
+            <p>不用订阅，不用注册，甚至不需要记住更新周期。<br>
+            偶尔点开收藏夹，或者直接输入那个已经有些模糊的地址——<a href="https://cnmain-igame.com">爱游戏</a> 一直在那里。</p>
+        </div>
+    </div>
+
+    <!-- 叙述性段落：从收藏与持续关注的角度展开 -->
+    <div class="essay">
+        <p>大概在一年多以前，我第一次打开这个网站。那时候只是随手搜到一个游戏笔记，读过就关了。后来清理书签时看到这个名字，点进去发现多了几篇新东西，写得还是那么不紧不慢。从那以后，我养成了一个很小的习惯：每隔几周，在浏览器的地址栏里敲下那串字母，然后看它有没有更新。</p>
+
+        <p>我不记得自己是从哪一刻开始把它当成一个固定角落的。但「会回来」这件事本身，慢慢变成了一种很轻的约定。不需要平台账号，不需要签到积分，甚至不需要告诉别人——<a href="https://cnmain-igame.com">爱游戏</a> 这个词对我而言，渐渐不再是一个链接，而是一个可以随时回去翻两页的地方。</p>
+
+        <div class="inset-quote">
+            <strong>· 持续关注的方式可以很简单</strong><br>
+            不需要 RSS、不需要推送。只是偶尔打开，看看有没有新文字。如果还没有更新，那就看看旧的，也常有不一样的体会。
+        </div>
+
+        <p>我想，这个站点的作者大概也是类似的想法——不追求日更，不制造信息焦虑，只是把思考过的内容放上去，等有缘分的人自己来读。这让我想起以前逛独立博客的年代，那时候收藏夹里存着几十个地址，每周轮着点开，像巡礼一样。</p>
+
+        <p>如果你也在找一个不吵闹的游戏信息源，不妨试试把 <a href="https://cnmain-igame.com">爱游戏</a> 放进你的收藏夹。不必每天惦记，但某天突然想起来、点开、发现又有新内容的那一刻，会有一种很安静的满足感。</p>
+    </div>
+
+    <!-- FAQ 摘要风格 -->
+    <div class="faq-mini">
+        <h4>一些可能被问到的 · 简短答复</h4>
+        <div class="faq-item">
+            <div class="q">—— 这个网站更新频繁吗？</div>
+            <div class="a">不频繁，但每篇都有内容。更像是一份个人向的游戏阅读存档。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">—— 需要注册或登录吗？</div>
+            <div class="a">完全不需要。直接打开 <a href="https://cnmain-igame.com">爱游戏</a> 就可以浏览全部内容。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">—— 适合哪些类型的玩家？</div>
+            <div class="a">适合喜欢读点东西、对游戏有持久兴趣、不追求速通或热点的人。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">—— 我上次来过，怎么知道有没有新文章？</div>
+            <div class="a">目前没有专门的提醒机制，只能麻烦你偶尔回来看一眼。其实这样也挺好——没有红点，没有未读计数。</div>
+        </div>
+    </div>
+
+    <!-- 底部小注 -->
+    <div class="footer-note">
+        · 写于一个安静的下午 · 如你某天再次想起，随时回来
+    </div>
+
+</div>
+</body>
+</html>
